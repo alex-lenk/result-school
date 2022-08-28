@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Карточка студента - задание #1</title>
+  <meta name="description" content="Используя HTML&CSS, сверстай карточку студента: В карточке студента заполни данные о себе. Необходимо реализовать верстку на чистом HTML&CSS без использования сторонних библиотек">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main class="card container">
+  <nav class="card__nav">
+    <label class="card__nav-decor" for="card__nav-toggle" >Меню сайта</label>
+    <input type="checkbox" class="card__nav-toggle" id="card__nav-toggle">
+
+    <div class="card__nav-menu">
+      <a href="#card__about" class="card__nav-item">Карточка студента</a>
+      <a href="#card__purpose" class="card__nav-item">Мои цели</a>
+      <a href="#card__schedule" class="card__nav-item">План обучения</a>
+      <a href="#card__courses" class="card__nav-item">Пройденные курсы</a>
+      <a href="#card__contacts" class="card__nav-item">Контакты</a>
+    </div>
+  </nav>
+
+
+  <h1 id="card__about">Карточка студента</h1>
+
+  <section class="card__about card__section">
+    <aside class="card__about-media">
+      <img src="img/photo.jpg" alt="Александр Янковой" class="card__about-img">
+    </aside>
+
+    <article class="card__about-content">
+      <div class="card__about-group">
+        <div class="card__about-label">Имя, фамилия:</div>
+        <div class="card__about-value">Александр Янковой</div>
+      </div>
+
+      <div class="card__about-group">
+        <div class="card__about-label">Возраст</div>
+        <div class="card__about-value">35</div>
+      </div>
+
+      <div class="card__about-group">
+        <div class="card__about-label">Опыт в программировании</div>
+        <div class="card__about-value">7 лет</div>
+      </div>
+
+      <div class="card__about-group">
+        <div class="card__about-label">
+          <strong>О себе</strong>
+        </div>
+        <div>
+          Я нашел свое призвание — создавать и&nbsp;конструировать сайты.<br>
+          Творю чудеса, помогая продукту ожить и&nbsp;обрести законченный индивидуальный образ.
+        </div>
+      </div>
+    </article>
+  </section>
+
+
+  <section class="card__section" id="card__purpose">
+    <h2>Мои цели на обучение</h2>
+
+    <ul>
+      <li>Redux</li>
+      <li>React-query</li>
+      <li>React-router-dom</li>
+      <li>Storybook, Lerna, Formik, Material UI</li>
+      <li>REST API</li>
+      <li>Node.js</li>
+    </ul>
+  </section>
+
+
+  <section class="card__schedule card__section" id="card__schedule">
+    <h2>Сколько времени смогу учиться</h2>
+
+    <ol class="card__schedule-list list-unstyled">
+      <li class="card__schedule-item" data-schedule="2-3ч.">Понедельник</li>
+      <li class="card__schedule-item" data-schedule="2-3ч.">Вторник</li>
+      <li class="card__schedule-item" data-schedule="2-3ч.">Среда</li>
+      <li class="card__schedule-item" data-schedule="2-3ч.">Четверг</li>
+      <li class="card__schedule-item" data-schedule="2-3ч.">Пятница</li>
+      <li class="card__schedule-item" data-schedule="4-5ч.">Суббота</li>
+      <li class="card__schedule-item" data-schedule="4-5ч.">Воскресенье</li>
+    </ol>
+  </section>
+
+
+  <section class="card__section" id="card__courses">
+    <h2>Мои пройденные курсы</h2>
+
+    <div class="card__courses">
+      <div class="card__courses-col">
+        <div class="card__courses-headline">Название</div>
+        <div class="card__courses-text">HTML</div>
+        <div class="card__courses-text">CSS</div>
+      </div>
+
+      <div class="card__courses-col">
+        <div class="card__courses-headline">Автор</div>
+        <div class="card__courses-text">Владилен Минин</div>
+        <div class="card__courses-text">Владилен Минин</div>
+      </div>
+
+      <div class="card__courses-col">
+        <div class="card__courses-headline">Оценка курса</div>
+        <div class="card__courses-text">10/10</div>
+        <div class="card__courses-text">10/10</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="card__section" id="card__contacts">
+    <h2>Контакты</h2>
+
+    <div class="card__contacts">
+      <a href="#" class="card__contacts-link" rel="nofollow" target="_blank">
+        <svg class="card__contacts-icon">
+          <use xlink:href="img/icons.svg#telegram"></use>
+        </svg>
+      </a>
+      <a href="#" class="card__contacts-link" rel="nofollow" target="_blank">
+        <svg class="card__contacts-icon">
+          <use xlink:href="img/icons.svg#vk"></use>
+        </svg>
+      </a>
+      <a href="#" class="card__contacts-link" rel="nofollow" target="_blank">
+        <svg class="card__contacts-icon">
+          <use xlink:href="img/icons.svg#instagram"></use>
+        </svg>
+      </a>
+      <a href="#" class="card__contacts-link" rel="nofollow" target="_blank">
+        <svg class="card__contacts-icon">
+          <use xlink:href="img/icons.svg#github"></use>
+        </svg>
+      </a>
+    </div>
+  </section>
+</main>
+</body>
+</html>
