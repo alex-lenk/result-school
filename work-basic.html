@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #1
+  /*
+  const existingUserLogin = 'the_best_user'
+  const existingUserPassword = '12345678'
+
+  const userLogin = prompt('Введите логин').trim()
+  const userPassword = prompt('Введите пароль').trim()
+
+  if (existingUserLogin === userLogin && existingUserPassword === userPassword) {
+    alert(`Добро пожаловать, ${userLogin}!`)
+  } else {
+    alert('Логин и (или) Пароль введены неверно!')
+  }
+  */
+
+
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #2
+  /*
+  let correctAnswers = 0
+  let incorrectAnswers = 0
+
+  const answer1 = Number(prompt('Сколько будет 2 + 2?'))
+  if (answer1 === 4) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  const answer2 = Number(prompt('Сколько будет 2 * 2?'))
+  if (answer2 === 4) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  const answer3 = Number(prompt('У Пети было 5 яблок. 3 из них он съел, 1 отдал другу. Сколько яблок у Пети осталось?'))
+  if (answer3 === 1) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  const answer4 = Number(prompt('У Маши было 10 конфет. 2 она съела, 1 отдала другу. После мама дала Маше еще 5 конфет. Сколько в итоге конфет осталось у Маши?'))
+  if (answer4 === 12) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  const answer5 = Number(prompt('Сколько будет 2 + 2 * 2?'))
+  if (answer5 === 6) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  alert(`
+Конец теста! Правильные ответы - ${correctAnswers};
+Неправильные ответы - ${incorrectAnswers}.
+`)
+*/
+
+
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #3
+/*
+  const question1 = confirm('JavaScript появился в 1995 году?')
+  question1 ? alert('Верно') : alert('Не верно.')
+
+  const question2 = confirm('Спецификация JavaScript называется ECMAScript?')
+  question2 ? alert('Верно') : alert('Не верно.')
+
+  const question3 = confirm('JavaScript был создан за 1 месяц?')
+  question3
+    ? alert('Не верно. JavaScript был создан за 10 дней!')
+    : alert('Верно. JavaScript был создан за 10 дней!')
+*/
+
+
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #4
+/*
+  let i = 0
+  while (i < 3) {
+    let newStudent = prompt('Введите имя нового студента!')
+    if (newStudent) {
+      newStudent = newStudent.trim()
+      alert(`Добро пожаловать, ${newStudent}!`)
+    }
+    i += 1
+  }
+
+  let n = 0
+  do {
+    let newStudent = prompt('Введите имя нового студента!')
+    if (newStudent) {
+      newStudent = newStudent.trim()
+      alert(`Добро пожаловать, ${newStudent}!`)
+    }
+    n += 1
+  } while (n < 3)
+  */
+
+
+
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #5
+  // Первый вариант
+    let sum = 0
+    for (let i = 1; i <= 100; i++) {
+      sum += i
+    }
+    alert(sum)
+
+  // Второй вариант
+    let sum2 = 0
+    for (let i = 100; i > 0; i--) {
+      sum2 += i
+    }
+    alert(sum2)
+
+   // Третий вариант - по формуле суммы n членов арифметической прогрессии
+    let sum3 = (1 + 100) * 100 /2
+    alert(sum3)
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // Модуль 1. База JavaScript 5. Работа со строками - Задание #1
+  /*
+    const
+      myName = 'Александр',
+      programLang = 'JavaScript',
+      courseCreatorName = 'Максима Филановича',
+      reasonText = 'мне это интересно и приносит уже доход, но мне хочется попасть в профессиональную команду',
+      numberOfMonth = 12
+
+    let myInfoText = `Всем привет! Меня зовут ${myName}. Сейчас я изучаю язык программирования ${programLang} на курсе
+    по ${programLang} у ${courseCreatorName}. Я хочу стать веб-разработчиком, потому что ${reasonText}. До этого я изучал
+    ${programLang} ${numberOfMonth} месяцев. Я уверен, что пройду данный курс до конца!`
+
+    console.log(myInfoText)
+  */
+
+
+  // Модуль 1. База JavaScript 5. Работа со строками - Задание #2
+  /*
+    myInfoText = myInfoText.replaceAll('JavaScript', 'javascript')
+    myInfoText = myInfoText.replaceAll('курс', 'КУРС')
+
+    console.log(myInfoText)
+    console.log(`Длина предложения: ${myInfoText.length} символов`)
+
+    console.log(`Первый символ: ${myInfoText[0]}`)
+    console.log(`Последний символ: ${myInfoText[myInfoText.length - 1]}`)
+  */
+
+
+  // Модуль 1. База JavaScript 5. Работа со строками - Задание #3
+  /*
+    const nameUser = prompt('Как Вас зовут?')
+    alert(`Вас зовут ${nameUser.toLowerCase().trim()}`)
+  */
+
+
+  // Модуль 1. База JavaScript 5. Работа со строками - Задание #4
+  /*
+    let nameUser = prompt('Как Вас зовут?')
+    nameUser = nameUser.toLowerCase().trim()
+
+    let userAge = prompt('Сколько вам лет?')
+    userAge = Number(userAge.trim())
+
+    alert(`Вас зовут ${nameUser} и вам ${userAge} лет`)
+  */
+
+
+  // Модуль 1. База JavaScript 5. Работа со строками - Задание #5
+  /*
+    const userString      = prompt('Самый короткий анекдот, который ты знаешь?').trim()
+    const startSliceIndex = Number(prompt('Введите индекс, с которого нужно начать обрезку строки:').trim())
+    const endSliceIndex   = Number(prompt('Введите индекс, которым нужно закончить обрезку строки:').trim())
+
+    alert(`Результат: ${userString.substring(startSliceIndex, endSliceIndex)}`)
+  */
+
+
+  // Модуль 1. База JavaScript 5. Работа со строками - Задание #6
+  let userText = prompt('Введите текст: ').trim()
+  let wordFromText = prompt('Введите слово из текста: ').trim()
+
+  let indexOfWord = userText.indexOf(wordFromText)
+
+  alert(`Результат: ${userText.slice(0, indexOfWord).trim()}`)
+
+</script>
+</body>
+</html>
