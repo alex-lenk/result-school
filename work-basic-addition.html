@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+<script>
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #1
+  /*  let javaScriptDescription = 'JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили. Является реализацией спецификации ECMAScript. JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений.'
+
+    // 1. Обрежь строку наполовину с 1-го символа по символ
+    javaScriptDescription = javaScriptDescription.slice(0, javaScriptDescription.length / 2 - 1)
+
+    // 2. Заменить все строчные буквы “а” на прописные “А” (и латиницу, и кириллицу).
+    javaScriptDescription = javaScriptDescription.replaceAll('a', 'A')
+    javaScriptDescription = javaScriptDescription.replaceAll('а', 'А')
+
+    // 3. Удали все пробелы в строке.
+    javaScriptDescription = javaScriptDescription.replaceAll(' ', '')
+
+    // 4. Продублируй итоговую строку 3 раза.
+    javaScriptDescription.repeat(3)
+
+    // 1. Символ, который находится посередине конечной строки. Если
+    console.log(javaScriptDescription[Math.floor(javaScriptDescription.length / 2) - 1])
+
+    // 2. Конечная строка
+    console.log(javaScriptDescription)*/
+
+
+
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #1
+  const clientName = 'Игорь'
+  let clientSpentForAllTime = 110
+
+  let clientSpentToday = 25
+  let discount = 0
+
+  if (clientName) {
+    if (clientSpentForAllTime >= 100 && clientSpentForAllTime < 300) {
+      discount = 10
+    } else if (clientSpentForAllTime >= 300 && clientSpentForAllTime < 500) {
+      discount = 20
+    } else if (clientSpentForAllTime >= 500) {
+      discount = 30
+    }
+
+    clientSpentToday -= clientSpentToday / 100 * discount
+    clientSpentForAllTime += clientSpentToday
+
+    alert(`Вам предоставляется скидка в ${discount}%!`)
+    alert(`Спасибо, ${clientName}! К оплате $${clientSpentToday}. За все время в нашем ресторане вы потратили $${clientSpentForAllTime}`)
+  }
+
+
+  /*
+  let correctAnswers = 0
+  let incorrectAnswers = 0
+
+  const answer1 = Number(prompt('Сколько будет 2 + 2?'))
+  if (answer1 === 4) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  const answer2 = Number(prompt('Сколько будет 2 * 2?'))
+  if (answer2 === 4) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  const answer3 = Number(prompt('У Пети было 5 яблок. 3 из них он съел, 1 отдал другу. Сколько яблок у Пети осталось?'))
+  if (answer3 === 1) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  const answer4 = Number(prompt('У Маши было 10 конфет. 2 она съела, 1 отдала другу. После мама дала Маше еще 5 конфет. Сколько в итоге конфет осталось у Маши?'))
+  if (answer4 === 12) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  const answer5 = Number(prompt('Сколько будет 2 + 2 * 2?'))
+  if (answer5 === 6) {
+    alert('Ответ Верный')
+    correctAnswers += 1
+  } else {
+    alert('Ответ Неверный')
+    incorrectAnswers += 1
+  }
+
+  alert(`
+Конец теста! Правильные ответы - ${correctAnswers};
+Неправильные ответы - ${incorrectAnswers}.
+`)
+*/
+
+
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #3
+  /*
+    const question1 = confirm('JavaScript появился в 1995 году?')
+    question1 ? alert('Верно') : alert('Не верно.')
+
+    const question2 = confirm('Спецификация JavaScript называется ECMAScript?')
+    question2 ? alert('Верно') : alert('Не верно.')
+
+    const question3 = confirm('JavaScript был создан за 1 месяц?')
+    question3
+      ? alert('Не верно. JavaScript был создан за 10 дней!')
+      : alert('Верно. JavaScript был создан за 10 дней!')
+  */
+
+
+  // Модуль 1. База JavaScript / 6. Введение в основы JavaScript - Задание #4
+  /*
+    let i = 0
+    while (i < 3) {
+      let newStudent = prompt('Введите имя нового студента!')
+      if (newStudent) {
+        newStudent = newStudent.trim()
+        alert(`Добро пожаловать, ${newStudent}!`)
+      }
+      i += 1
+    }
+
+    let n = 0
+    do {
+      let newStudent = prompt('Введите имя нового студента!')
+      if (newStudent) {
+        newStudent = newStudent.trim()
+        alert(`Добро пожаловать, ${newStudent}!`)
+      }
+      n += 1
+    } while (n < 3)
+    */
+
+
+</script>
+</body>
+</html>
