@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body style="background-color: #2b2b2b">
+<script>
+  // Задание #1 > 9. Массивы > Модуль 1. База JavaScript
+
+  /*
+    // Решение согласно ТЗ (без цикла)
+    const peopleWaiting = ['Кристина', 'Олег', 'Кирилл', 'Мария', 'Светлана', 'Артем', 'Глеб']
+
+    giveParcel()
+    giveParcel()
+    giveParcel()
+
+    leaveQueueWithoutParcel()
+    leaveQueueWithoutParcel()
+    leaveQueueWithoutParcel()
+    leaveQueueWithoutParcel()
+
+    function giveParcel() {
+      const clientName = peopleWaiting.shift()
+      alert(`${clientName} получил(а) посылку. В очереди осталось ${peopleWaiting.length} человек.`)
+    }
+
+    function leaveQueueWithoutParcel() {
+      const clientName = peopleWaiting.pop()
+      alert(`${clientName} не получил(а) посылку и ушел(ла) из очереди`)
+    }
+
+
+  // Решение согласно ТЗ с помощью цикла
+    const peopleWaiting = ['Кристина', 'Олег', 'Кирилл', 'Мария', 'Светлана', 'Артем', 'Глеб']
+
+    for (let i = peopleWaiting.length; i > 0; i -= 1) {
+      const countClients = peopleWaiting.length - 1
+      if (i < 5) {
+        leaveQueueWithoutParcel();
+      } else {
+        giveParcel(countClients)
+      }
+    }
+
+    function giveParcel(countClients) {
+      const clientName = peopleWaiting.shift()
+      alert(`${clientName} получил(а) посылку. В очереди осталось ${countClients} человек.`)
+    }
+
+    function leaveQueueWithoutParcel() {
+      const clientName = peopleWaiting.pop()
+      alert(`${clientName} не получил(а) посылку и ушел(ла) из очереди`)
+    }
+  */
+
+
+  // Оптимальное решение, так как не проводит дополнительных операций по удалению из массива
+  // Владимир, очень интересно твоё мнение
+  /*
+      const peopleWaiting = ['Кристина', 'Олег', 'Кирилл', 'Мария', 'Светлана', 'Артем', 'Глеб']
+      let countClients = peopleWaiting.length
+
+      peopleWaiting.forEach(instance => {
+        countClients -= 1
+        if (countClients > 3) {
+          giveParcel(instance, countClients)
+        } else {
+          leaveQueueWithoutParcel(instance)
+        }
+      })
+
+      function giveParcel(clientName, countClients) {
+        alert(`${clientName} получил(а) посылку. В очереди осталось ${countClients} человек.`)
+      }
+
+      function leaveQueueWithoutParcel(clientName) {
+        alert(`${clientName} не получил(а) посылку и ушел(ла) из очереди`)
+      }
+  */
+
+
+
+  // Задание #2 > 9. Массивы > Модуль 1. База JavaScript
+  /*
+    function getSumOfSequence(number) {
+      let array = []
+      for (let i = 1; i <= number; i++) {
+        array.push(i)
+      }
+      return array[0] + array[array.length - 1]
+    }
+
+    console.log(getSumOfSequence(5))
+  */
+
+
+
+  // Задание #3 > 9. Массивы > Модуль 1. База JavaScript
+  /*
+    const coffees = ['Latte', 'Cappuccino', 'Americano']
+    const coffeeName = prompt('Поиск кофе по названию:').toLowerCase()
+
+    const coffee = coffees.filter(instance => {
+      return instance.toLowerCase() === coffeeName
+    })
+    const coffeePopular = coffees.findIndex(instance => {
+      return (instance.toLowerCase() === coffeeName)
+    }) + 1
+
+    if (coffee.length) {
+      alert(`Держите ваш любимый кофе ${coffee}. Он ${coffeePopular}-й по популярности в нашей кофейне.`)
+    } else {
+      alert('К сожалению, такого вида кофе нет в наличии')
+    }
+  */
+
+
+
+
+  // Задание #4 > 9. Массивы > Модуль 1. База JavaScript
+  const coffees = ['Latte', 'Cappuccino', 'Americano']
+  const prices = [1.5, 1, 2]
+  const updatedPrices = prices.map(item => {
+    return item + 0.5
+  })
+
+  console.log(updatedPrices)
+
+
+</script>
+
+</body>
+</html>
