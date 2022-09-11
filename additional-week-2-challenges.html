@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body style="background-color: #2b2b2b">
+<script>
+  // Задание #1 > Дополнительные задания недели 2 > Модуль 1. База JavaScript
+  /*
+    function checkQuestionAnswer(question, correctAnswer) {
+      const answer = prompt(question).trim()
+
+      if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
+        alert('Ответ верный')
+      } else {
+        alert('Ответ неверный')
+      }
+    }
+
+    checkQuestionAnswer('Арбуз это фрукт или ягода?', 'Ягода')
+    checkQuestionAnswer('Сколько в среднем зубов у взрослого человека?', '32')
+    checkQuestionAnswer('Как называется самая маленькая птица в мире?', 'Колибри')
+  */
+
+
+
+  // Задание #2 > Дополнительные задания недели 2 > Модуль 1. База JavaScript
+  /*
+    function showSuccessMessage(message) {
+      console.log(message)
+    }
+
+    function showErrorMessage(message) {
+      console.error(message)
+    }
+
+    function checkTextOnErrorSymbol(text, errorSymbol, successCallback, errorCallback) {
+      let haveErrorSymbol = false
+      let i = 0
+      for(; i < text.length; i += 1){
+        if(text[i] === errorSymbol){
+          errorCallback(`Найден запрещенный символ ${errorSymbol} под индексом ${i}.`)
+          haveErrorSymbol = true
+        }
+      }
+      if(haveErrorSymbol === false) {
+        successCallback('В данном тексте нет запрещенных символов')
+      }
+    }
+
+    const text = 'Привет! Как дела! Давно мы с тобой не виделись.'
+    checkTextOnErrorSymbol(text, 'а', showSuccessMessage, showErrorMessage)
+  */
+
+
+
+  // Задание #1 > Дополнительные задания недели 2 > Модуль 1. База JavaScript https://codepen.io/alex-lenk/pen/ZEoOOZX
+  /*
+    const goals = [8, 1, 1, 3, 2, -1, 5]
+    const totalGoodGoals = goals.filter(el => el > -1)
+
+
+    // 1. Самый результативный матч по количеству голов.
+    const numberOfMaxGoals = Math.max(...goals)
+    const foundIndexMaxGoals = goals.findIndex(() => numberOfMaxGoals) + 1
+    console.log(`Самый результативный матч был под номером ${foundIndexMaxGoals}. В нем было забито ${numberOfMaxGoals} гол(ов).`)
+
+
+    // 2. Самые не результативные игры.
+    const numberOfGoalsMin = Math.min(...totalGoodGoals)
+    const numBadMatchesArr = []
+    goals.forEach((item, index) => item === numberOfGoalsMin ? numBadMatchesArr.push(index + 1) : '')
+    console.log(`Самые нерезультативные матчи были под номерами ${numBadMatchesArr}. В каждом из них было забито по ${numberOfGoalsMin} мячей(а).`)
+
+
+    // 3. Общее количество голов за сезон.
+    const totalNumberGoals = totalGoodGoals.reduce((a, b) => a + b, 0)
+    console.log(`Общее количество голов за сезон равно ${totalNumberGoals}`)
+
+
+    // 4. Были ли автоматические поражения.
+    const findAutomaticDefeats = goals.includes(-1) ? 'да' : 'нет'
+    console.log(`Были автоматические поражения: ${findAutomaticDefeats}`)
+
+
+    // 5. Среднее количество голов за матч. *!/
+    const findMiddleNumberGoals = Math.ceil(totalNumberGoals / goals.length)
+    console.log(`Среднее количество голов за матч равно ${findMiddleNumberGoals}`)
+
+
+    // 6. Отсортируйте голы в порядке возрастания.
+    let SortAscending = totalGoodGoals.sort((a, b) => a - b).join()
+    console.log('Сортировка по возрастанию: ', SortAscending)
+    console.log('Исходный массив: ', goals)
+  */
+
+
+  // Задание #2 > Дополнительные задания недели 2 > Модуль 1. База JavaScript
+  /*
+  function getMathResult(expression) {
+    const matSymbols = '><=+-*!/'
+    let result = ''
+    for (let i = 0; i < expression.length; i++) {
+      if (isNaN(Number(expression[i])) === true && !matSymbols.includes(expression[i])) {
+        expression.splice(i, 1)
+        i--
+      }
+    }
+    if (!matSymbols.includes(expression[1]) || expression.length < 3) {
+      return 'Ошибка'
+    }
+
+    switch (expression[1]) {
+      case '>':
+        result = Number(expression[0]) > Number(expression[2])
+        break
+      case '<':
+        result = Number(expression[0]) < Number(expression[2])
+        break
+      case '*':
+        result = Number(expression[0]) * Number(expression[2])
+        break
+      case '/':
+        result = Number(expression[0]) / Number(expression[2])
+        break
+      case '+':
+        result = Number(expression[0]) + Number(expression[2])
+        break
+      case '-':
+        result = Number(expression[0]) - Number(expression[2])
+        break
+      case '=':
+        result = Number(expression[0]) === Number(expression[2])
+        break
+    }
+    return result
+  }
+
+  console.log(getMathResult(['200', '+', 300])) // 500
+  console.log(getMathResult(['20', '-', '5'])) // 15
+  console.log(getMathResult([100, '/', 100])) // 1
+  console.log(getMathResult([2, '-', 2])) // 0
+  console.log(getMathResult(['5', '>', '10'])) // false
+  console.log(getMathResult(['5', '<', '10'])) // true
+  console.log(getMathResult(['1', '=', 1])) // true
+  console.log(getMathResult(['1', '**', 1])) // 'Ошибка'
+  console.log(getMathResult(['+', '100', 10])) // 'Ошибка'
+  console.log(getMathResult(['100', 'hello', 'javascript', 'help200', '+', 4])) // ['100', '+', 4]
+  */
+
+
+
+  // Задание #3 > Дополнительные задания недели 2 > Модуль 1. База JavaScript
+    const matrixArr = [];
+
+    for (let i = 1; i <= 3; i++) {
+      const countArr = []
+      for (let j = 1; j <= 5; j++) {
+        countArr.push(Math.round(Math.random() * 100))
+      }
+      matrixArr.push(countArr)
+    }
+
+    console.log(matrixArr)
+
+
+
+  // Задание #4 > Дополнительные задания недели 2 > Модуль 1. База JavaScript
+/*
+  const matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]
+  const mutationMatrix = matrix.reduce((acc, arr) => {
+    acc.push(...arr)
+    return acc
+  }, [])
+
+  console.log(mutationMatrix)
+  */
+</script>
+</body>
+</html>
