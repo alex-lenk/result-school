@@ -62,6 +62,7 @@
 
 
   // Задание #3 > 10. Объекты > Модуль 1. База JavaScript
+  /*
   function handleObject(obj, key, action) {
     if (action === 'get') {
       return obj[key]
@@ -81,6 +82,38 @@
 
   const result = handleObject(student, 'programmingLanguage', 'delete');
   console.log('result', result); // { name: 'Maxim' }
+  */
+
+
+  // Задание #4 > 10. Объекты > Модуль 1. База JavaScript https://codepen.io/alex-lenk/pen/XWqMBQJ
+/*
+  const student = {
+    fullName: 'Максим',
+    experienceInMonths: 12,
+    stack: ['HTML', 'CSS', 'JavaScript', 'React'],
+  }
+
+  const giveJobToStudent = (student, jobName) => {
+    const {fullName} = student
+
+    alert(`Поздравляем! У студента ${fullName} появилась новая работа! Теперь он ${jobName}`)
+
+    return {
+      ...student,
+      job: jobName
+    }
+  }
+
+  const updatedStudent = giveJobToStudent(student, 'веб-разработчик')
+  console.log('updatedStudent', updatedStudent)
+*/
+
+
+
+  // Задание #5 > 10. Объекты > Модуль 1. База JavaScript
+
+
+
 </script>
 </body>
 </html>
