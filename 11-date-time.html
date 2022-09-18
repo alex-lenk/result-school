@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body style="background-color: #2b2b2b">
+<script>
+  // Задание #1 > 11. Дата и время > Модуль 1. База JavaScript
+/*
+  function getDateFormat(date, separator = '.') {
+    const year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+
+     day = (day > 9 ? '' : '0') + day
+     month = (month > 9 ? '' : '0') + month
+
+    return `${day}${separator}${month}${separator}${year}`
+  }
+
+  console.log(getDateFormat(new Date(2001, 5, 5), '-'))
+  */
+
+
+  // Задание #2 > 11. Дата и время > Модуль 1. База JavaScript
+  /*
+  function getDaysBeforeBirthday(nextBirthdayDate) {
+    return convertMsToDays(nextBirthdayDate)
+  }
+
+  function convertMsToDays(dataBeforeBirthday) {
+    const toDay = new Date().getTime()
+    const beforeBirthday = dataBeforeBirthday.getTime()
+
+    return Math.round((beforeBirthday - toDay) / 1000 / 3600 / 24)
+  }
+
+  console.log('Количество дней до дня нового рождения: ', getDaysBeforeBirthday(new Date(2022, 9, 4)))
+*/
+
+
+  // Задание #3 > 11. Дата и время > Модуль 1. База JavaScript
+  function addDays(date, days) {
+    return new Date(date.getTime() + (Number(days) * 24 * 3600 * 1000))
+  }
+
+  console.log(addDays(new Date(), 5))
+
+</script>
+</body>
+</html>
