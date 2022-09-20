@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body style="background-color: #2b2b2b">
+<script>
+  // Задание #1 / 12. Ключевое слово "this" / Модуль 1. База JavaScript
+  /*
+  const student = {
+    stack: ['HTML'],
+    level: 1,
+    improveLevel() {
+      this.level += 1
+
+      if (this.level === 2) {
+        this.stack.push('CSS')
+      } else if (this.level === 3) {
+        this.stack.push('JavaScript')
+      } else if (this.level === 4) {
+        this.stack.push('React')
+      } else if (this.level === 5) {
+        this.stack.push('NodeJS')
+      } else {
+        alert('Студент выучил все технологии!')
+      }
+
+      return this
+    }
+  }
+
+  student
+    .improveLevel()
+    .improveLevel()
+    .improveLevel()
+    .improveLevel()
+    .improveLevel()
+
+  console.log(student)
+  console.log(student.stack)
+  */
+
+
+  // Задание #2 / 12. Ключевое слово "this" / Модуль 1. База JavaScript
+  /*
+  const dog = {
+    name: 'Чарли',
+    type: 'Собака',
+    makeSound() {
+      return 'Гав-Гав'
+    }
+  }
+
+  const bird = {
+    name: 'Петя',
+    type: 'Воробей',
+    makeSound() {
+      return 'Чик-чирик'
+    }
+  }
+
+  function makeDomestic(isDomestic) {
+    const animals = {
+      ...this,
+      isDomestic
+    }
+    console.log(`${this.type} по имени ${this.name} говорит ${this.makeSound()}`)
+    console.log(animals)
+    return animals
+  }
+
+  const animalHomes = makeDomestic.bind(dog, true)
+  animalHomes()
+  // Вернет объект: {name: 'Чарли', type: 'Собака', isDomestic: true, makeSound: ƒ}
+  // И выведет сообщение: "Собака по имени Чарли говорит Гав-Гав"
+
+  makeDomestic.call(bird, false)
+  makeDomestic.apply(bird, [false])
+  // Вернет объект: {name: 'Петя', type: 'Воробей', isDomestic: false, makeSound: ƒ}
+  // И выведет сообщение: "Воробей по имени Петя говорит Чик-чирик"
+*/
+
+
+
+  // Задание #3 / 12. Ключевое слово "this" / Модуль 1. База JavaScript
+  const footballer = {
+    fullName: 'Cristiano Ronaldo',
+    attack() {
+      console.log(`${this.fullName} сейчас с мячом и начинает атаку!`)
+    },
+    scoreGoal(sound) {
+      console.log(`${this.fullName} забил гол! Вот это да!`)
+      this.celebrate(sound)
+    },
+    celebrate(sound) {
+      console.log(sound)
+    },
+    goToSubstitution: function (newPlayer) {
+      console.log(`${this.fullName} уходит на замену. На поле выходит ${newPlayer}`)
+    }
+  }
+
+  const attack = footballer.attack
+  const score = footballer.scoreGoal
+  const substitute = footballer.goToSubstitution
+
+  attack.bind(footballer)()
+  score.call(footballer, 'Сиииии')
+  substitute.apply(footballer, ['Paulo Dibala'])
+
+</script>
+</body>
+</html>
