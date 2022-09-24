@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body style="background-color: #2b2b2b">
+<script>
+  // Задание #1 / Дополнительные задания недели 4 / Модуль 1. База JavaScript
+  /*
+    const attacker = {
+      archer: 30,
+      footSoldier: 55,
+      cavalry: 10,
+      artillery: 3,
+
+      checkChancesToWin(defenderObject) {
+        let attackerChances = 0
+        let maxChance = 0
+
+        Object.keys(defenderObject).forEach(type => {
+          if (this[type] > defenderObject[type]) {
+            attackerChances += 1
+            maxChance += 1
+          } else {
+            maxChance += 1
+          }
+        })
+        return [attackerChances, maxChance]
+      },
+      improveArmy() {
+        this.archer += 5
+        this.footSoldier += 5
+        this.cavalry += 5
+        this.artillery += 5
+      },
+      attack(defender) {
+        let arrChances = this.checkChancesToWin(defender)
+        let mathChances = arrChances[0] / arrChances[1] * 100
+        if (mathChances < 70) {
+          alert(`Наши шансы равны ${arrChances[0]}/${arrChances[1]}. Необходимо укрепление!`)
+          this.improveArmy()
+        } else {
+          alert(`Мы усилились! Мы несомненно победим! Наши шансы высоки!`)
+        }
+      }
+    }
+
+    const defender = {
+      archer: 33,
+      footSoldier: 50,
+      cavalry: 40,
+      artillery: 10
+    }
+
+    attacker.attack(defender) // Наши шансы равны 1/4. Необходимо укрепление!
+    attacker.attack(defender) // Наши шансы равны 2/4. Необходимо укрепление!
+    attacker.attack(defender) // Мы усилились! Мы несомненно победим! Наши шансы высоки!
+  */
+
+
+
+  // Задание #1 / Дополнительные задания недели 4 / Модуль 1. База JavaScript
+  /*
+  class Dictionary {
+    #name
+    #words
+
+    constructor(name) {
+      this.#name = name
+      this.#words = {}
+    }
+
+    get mainName() {
+      return this.#name
+    }
+
+    set setMainName(name) {
+      this.#name = name
+    }
+
+    get allWords() {
+      return this.#words
+    }
+
+    addNewWord(wordKey, wordObj) {
+      this.allWords[wordKey] = wordObj
+    }
+
+    add(word, description) {
+      if (!this.allWords[word]) {
+        this.addNewWord(
+          word, {
+            word: word,
+            description: description,
+          }
+        )
+      }
+    }
+
+    remove(word) {
+      delete this.allWords[word]
+    }
+
+    get(word) {
+      return this.allWords[word]
+    }
+
+    showAllWords() {
+      Object
+        .keys(this.allWords)
+        .forEach(instance => console.log(`${this.allWords[instance].word} - ${this.allWords[instance].description}`))
+    }
+  }
+
+  class HardWordsDictionary extends Dictionary {
+    add(word, description, isDifficult) {
+      if (!this.allWords[word]) {
+        this.addNewWord(
+          word, {
+            word: word,
+            description: description,
+            isDifficult: true,
+          }
+        )
+      }
+    }
+  }
+
+  const hardWordsDictionary = new HardWordsDictionary('Сложные слова')
+
+  hardWordsDictionary.add('дилетант', 'Тот, кто занимается наукой или искусством без специальной подготовки, обладая только поверхностными знаниями.')
+
+  hardWordsDictionary.add('неологизм', 'Новое слово или выражение, а также новое значение старого слова.')
+
+  hardWordsDictionary.add('квант', 'Неделимая часть какой-либо величины в физике.')
+
+  hardWordsDictionary.remove('неологизм')
+
+  hardWordsDictionary.showAllWords()
+
+  console.log(hardWordsDictionary.mainName) // Сложные слова
+  hardWordsDictionary.mainName = 'Новый Словарь'
+  console.log(hardWordsDictionary.mainName) // Новый Словарь
+  console.log(hardWordsDictionary.allWords) // выводит объект в котором есть слова
+  // дилетант и квант
+*/
+
+
+  // Задание #2 / Дополнительные задания недели 4 / Модуль 1. База JavaScript
+
+  class CarService {
+    static DefaultWorkingHours = {
+      from: '9:00',
+      till: '20:00',
+    }
+
+    constructor(name, workingHours) {
+      this.name = name
+      this.workingHours = workingHours || CarService.DefaultWorkingHours
+    }
+
+    repairCar(carName) {
+      if (!carName) {
+        console.error('Вам необходимо указать название машины, чтобы ее отремонтировать')
+        return false
+      }
+
+      const currentHour = new Date().getHours()
+      const from = Number(this.workingHours.from.split(':')[0])
+      const till = Number(this.workingHours.till.split(':')[0])
+
+      let message
+      if (currentHour >= from && currentHour <= till) {
+        message = `Сейчас отремонтируем вашу машину ${carName}! Ожидайте пожалуйста`
+      } else {
+        message = 'К сожалению, мы сейчас закрыты. Приходите завтра'
+      }
+      alert(message)
+    }
+  }
+
+  const carService = new CarService('RepairCarNow', {from: '8:00', till: '20:00'})
+  carService.repairCar('BMW')
+</script>
+</body>
+</html>
