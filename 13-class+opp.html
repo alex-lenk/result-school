@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body style="background-color: #2b2b2b">
+<script>
+  // Задание #1 / 13. Классы + ООП / Модуль 1. База JavaScript
+  /*
+  class Student {
+    constructor(name, age) {
+      this.name = name
+      this.age = age
+      this.technologies = []
+      this.status = 'Junior'
+    }
+
+    setTechnologies(technologies) {
+      this.technologies = [
+        ...this.technologies,
+        ...technologies,
+      ]
+    }
+
+    setNewStatus(newStatus) {
+      this.status = newStatus
+    }
+  }
+
+  const student = new Student ('Maxim', 20)
+  student.setTechnologies([ 'HTML', 'CSS', 'JavaScript' ])
+  student.setNewStatus('Middle')
+  console.log(student)
+  */
+
+
+  // Задание #2 / 13. Классы + ООП / Модуль 1. База JavaScript
+  /*
+    class Person {
+      constructor(name, age) {
+        this.name = name
+        this.age = age
+      }
+
+      compareAge(instance) {
+        const difference = this.age < instance.age ? 'младше' : 'старше'
+        return alert(`${this.name} ${difference}, чем ${instance.name}`)
+      }
+    }
+
+    const person1 = new Person('Максим', 24)
+    const person2 = new Person('Светлана', 36)
+    const person3 = new Person('Ирина', 23)
+
+    person1.compareAge(person2) // Максим младше, чем Светлана
+    person2.compareAge(person3) // Светлана старше, чем Ирина
+    person3.compareAge(person1) // Ирина младше, чем Максим
+    */
+
+
+  // Задание #3 / 13. Классы + ООП / Модуль 1. База JavaScript
+  /*
+    class Dictionary {
+      constructor(name) {
+        this.name = name
+        this.words = {}
+      }
+
+      add(word, description) {
+        if (!this.words[word]) {
+          this.words[word] = {
+            word,
+            description
+          }
+        }
+      }
+
+      remove(word) {
+        delete this.words[word]
+      }
+
+      get(word) {
+        return this.words[word]
+      }
+
+      showAllWords() {
+        Object.values(this.words).forEach(instance => console.log(`${instance.word} - ${instance.description}`))
+      }
+    }
+
+    const dictionary = new Dictionary('словарь разработчика')
+    console.log(dictionary)
+
+    dictionary.add('Наследование', 'создание дочерних классов на основе родительских')
+    dictionary.add('Инкапсуляция', 'объединение в одном месте данных и поведения')
+    dictionary.add('Полиморфизм', 'способность вызвать один и тот же метод у разных объектов')
+    dictionary.add('Абстракция', 'выделение минимальных базовых данных и структуры, не вдаваясь в детали')
+    dictionary.add('JavaScript', 'мультипарадигменный язык программирования')
+
+    console.log('JavaScript: ', dictionary.get('JavaScript'))
+
+    dictionary.remove('JavaScript')
+    dictionary.showAllWords()
+  */
+
+
+  // Задание #4 / 13. Классы + ООП / Модуль 1. База JavaScript
+  /*
+
+  class Dictionary {
+    constructor(name) {
+      this.name = name
+      this.words = {}
+    }
+
+    add(word, description) {
+      if (!this.words[word]) {
+        this.words[word] = {
+          word,
+          description
+        }
+      }
+    }
+
+    remove(word) {
+      delete this.words[word]
+    }
+
+    get(word) {
+      return this.words[word]
+    }
+
+    showAllWords() {
+      Object.values(this.words).forEach(instance => console.log(`${instance.word} - ${instance.description}`))
+    }
+  }
+
+  class HardWordsDictionary extends Dictionary {
+    add(word, description, isDifficult) {
+      if (!this.words[word]) {
+        this.words[word] = {
+          word,
+          description,
+          isDifficult
+        }
+      }
+    }
+  }
+
+  const hardWordsDictionary = new HardWordsDictionary('Сложные слова')
+
+  hardWordsDictionary.add('дилетант', 'Тот, кто занимается наукой или искусством без специальной подготовки, обладая только поверхностными знаниями.')
+
+  hardWordsDictionary.add('неологизм', 'Новое слово или выражение, а также новое значение старого слова.')
+
+  hardWordsDictionary.add('квант', 'Неделимая часть какой-либо величины в физике.')
+
+  hardWordsDictionary.remove('неологизм')
+
+  hardWordsDictionary.showAllWords()
+
+  // дилетант - Тот, кто занимается наукой или искусством без специальной подготовки, обладая только поверхностными знаниями.
+  // квант - Неделимая часть какой-либо величины в физике.
+  */
+
+
+  // Задание #5 / 13. Классы + ООП / Модуль 1. База JavaScript
+
+  class Developer {
+    constructor(fullName, age, position) {
+      this.fullName = fullName
+      this.age = age
+      this.position = position
+      this.technologies = []
+    }
+
+    code() {
+    }
+
+    learnNewTechnologies(technology) {
+      this.technologies.push(technology)
+    }
+  }
+
+  class JuniorDeveloper extends Developer {
+    constructor(fullName, age) {
+      super(fullName, age, 'Junior')
+    }
+
+    code() {
+      console.log(`${this.position} разработчик пишет код...`)
+    }
+
+    technologies = ['HTML', 'CSS', 'JavaScript']
+  }
+
+  class MiddleDeveloper extends Developer {
+    constructor(fullName, age, position = 'Middle') {
+      super(fullName, age, 'Middle')
+    }
+
+    code() {
+      console.log(`${this.position}-разработчик пишет код...`)
+    }
+
+    technologies = ['HTML', 'CSS', 'JavaScript', 'React']
+  }
+
+  class SeniorDeveloper extends Developer {
+    constructor(fullName, age, position = 'Senior') {
+      super(fullName, age)
+      this.position = position
+    }
+
+    code() {
+      console.log(`${this.position}-разработчик пишет код...`)
+    }
+
+    technologies = ['HTML', 'CSS', 'JavaScript', 'React', 'NodeJS']
+  }
+
+  const juniorDeveloper = new JuniorDeveloper('Анастасия', 20)
+  const middleDeveloper = new MiddleDeveloper('Игорь', 25)
+  const seniorDeveloper = new SeniorDeveloper('Максим', 30)
+
+  juniorDeveloper.code() // Junior разработчик пишет код...
+  middleDeveloper.code() // Middle разработчик пишет код...
+  seniorDeveloper.code() // Senior разработчик пишет код...
+
+  seniorDeveloper.learnNewTechnologies('Docker')
+
+  console.log(juniorDeveloper.fullName, juniorDeveloper.age, juniorDeveloper.position, juniorDeveloper.technologies)
+  // 'Анастасия' 20 'Junior' ['HTML', 'CSS', 'JavaScript']
+
+  console.log(middleDeveloper.fullName, middleDeveloper.age, middleDeveloper.position, middleDeveloper.technologies)
+  // 'Игорь' 25 'Middle' ['HTML', 'CSS', 'JavaScript', 'React']
+
+  console.log(seniorDeveloper.fullName, seniorDeveloper.age, seniorDeveloper.position, seniorDeveloper.technologies)
+  // 'Максим' 30 'Senior' ['HTML', 'CSS', 'JavaScript', 'React', 'NodeJS', 'Docker']
+
+</script>
+</body>
+</html>
