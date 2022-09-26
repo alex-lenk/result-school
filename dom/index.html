@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Работа с DOM</title>
+</head>
+<body>
+<div id="tasks">
+  <div class="tasks__wrapper">
+    <form class="create-task-block">
+      <input
+        name="taskName"
+        class="create-task-block__input default-text-input"
+        type="text"
+        placeholder="Создайте новую задачу"
+        value="Посмотреть урок по JavaScript"
+      >
+      <button
+        type="submit"
+        class="create-task-block__button default-button"
+      >
+        Создать
+      </button>
+    </form>
+
+    <div class="tasks-list"></div>
+  </div>
+</div>
+
+<script>
+  // Задание #2 / 14. Работа с DOM. Часть 1 / Модуль 1. База JavaScript
+
+  const tasks = [
+    {
+      id: '1138465078061',
+      completed: false,
+      text: 'Посмотреть новый урок по JavaScript',
+    },
+    {
+      id: '1138465078062',
+      completed: false,
+      text: 'Выполнить тест после урока',
+    },
+    {
+      id: '1138465078063',
+      completed: false,
+      text: 'Выполнить ДЗ после урока',
+    },
+  ]
+
+  const tasksList = document.querySelector('.tasks-list')
+
+  tasks.forEach((instance) => {
+    const div = document.createElement('div')
+    const id = instance.id
+    div.classList.add('task-item')
+    div.dataset.taskId = id
+
+    div.innerHTML = `
+<div class="task-item__main-container">
+  <div class="task-item__main-content">
+    <form class="checkbox-form">
+      <input class="checkbox-form__checkbox" type="checkbox" id="task-${id}">
+      <label for="task-${id}"></label>
+    </form>
+    <span class="task-item__text">
+      ${instance.text}
+    </span>
+  </div>
+  <button class="task-item__delete-button default-button delete-button" data-delete-task-id="5">
+    Удалить
+  </button>
+</div>
+`
+    tasksList.append(div)
+  })
+</script>
+</body>
+</html>
