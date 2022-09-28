@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="index.css">
-  <title>Работа с DOM</title>
+  <title>Работа с DOM часть 2</title>
 </head>
 <body>
 <div id="tasks">
@@ -51,31 +51,49 @@
     },
   ]
 
+  function createdEl(typeEl, classEl, attr) {
+    const htmlTag = document.createElement(typeEl)
+
+    if (classEl) {
+      if (!Array.isArray(classEl)) {
+        htmlTag.classList.add(classEl)
+      } else {
+        htmlTag.classList.add(...classEl)
+      }
+    }
+    if (attr) {
+      htmlTag.setAttribute(attr.type, attr.value)
+    }
+    return htmlTag
+  }
+
   const tasksList = document.querySelector('.tasks-list')
 
-  tasks.forEach((instance) => {
-    const div = document.createElement('div')
+  tasks.forEach(instance => {
     const id = instance.id
-    div.classList.add('task-item')
-    div.dataset.taskId = id
 
-    div.innerHTML = `
-<div class="task-item__main-container">
-  <div class="task-item__main-content">
-    <form class="checkbox-form">
-      <input class="checkbox-form__checkbox" type="checkbox" id="task-${id}">
-      <label for="task-${id}"></label>
-    </form>
-    <span class="task-item__text">
-      ${instance.text}
-    </span>
-  </div>
-  <button class="task-item__delete-button default-button delete-button" data-delete-task-id="5">
-    Удалить
-  </button>
-</div>
-`
-    tasksList.append(div)
+    const taskItem = createdEl('div', 'task-item', {type: 'data-task-id', value: id})
+    const container = createdEl('div', 'task-item__main-container')
+    const content = createdEl('div', 'task-item__main-content')
+    const form = createdEl('form', 'checkbox-form')
+    const input = createdEl('input', 'checkbox-form__checkbox', {type: 'type', value: 'checkbox'})
+    input.setAttribute('id', `task-${id}`)
+    const label = createdEl('label', '', {type: 'for', value: `task-${id}`})
+    const span = createdEl('span', 'task-item__text')
+    span.textContent = instance.text
+
+    const button = createdEl('button', ['task-item__delete-button', 'default-button', 'delete-button'], {type: 'data-delete-task-id', value: id})
+    button.textContent = 'Удалить'
+
+    taskItem.append(container)
+    container.append(content)
+    container.append(button)
+    content.append(form)
+    content.append(span)
+    form.append(input)
+    form.append(label)
+
+    tasksList.append(taskItem)
   })
 </script>
 </body>
