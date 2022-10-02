@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Работа с DOM</title>
+</head>
+<body>
+<div id="tasks">
+  <div class="tasks__wrapper">
+    <form class="create-task-block">
+      <input
+        name="taskName"
+        class="create-task-block__input default-text-input"
+        type="text"
+        placeholder="Создайте новую задачу"
+        value="Посмотреть урок по JavaScript"
+      >
+      <span class="error-message-block"></span>
+      <button type="submit" class="create-task-block__button default-button">Создать</button>
+    </form>
+    <div class="tasks-list"></div>
+  </div>
+</div>
+
+<div class="modal-overlay modal-overlay_hidden">
+  <div class="delete-modal">
+    <h3 class="delete-modal__question">Вы действительно хотите удалить эту задачу?</h3>
+    <div class="delete-modal__buttons">
+      <button class="delete-modal__button delete-modal__cancel-button">Отмена</button>
+      <button class="delete-modal__button delete-modal__confirm-button">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  'use strict'
+  // Задание #1 / 14. Работа с DOM. Часть 2 / Модуль 1. База JavaScript
+  const tasks = [
+    {
+      id: '1138465078061',
+      completed: false,
+      text: 'Посмотреть новый урок по JavaScript',
+    },
+    {
+      id: '1138465078062',
+      completed: false,
+      text: 'Выполнить тест после урока',
+    },
+    {
+      id: '1138465078063',
+      completed: false,
+      text: 'Выполнить ДЗ после урока',
+    },
+  ]
+  const list = document.querySelector('.tasks-list')
+
+  function createEl(typeEl, classEl, attr, text) {
+    const htmlTag = document.createElement(typeEl)
+
+    if (classEl) {
+      if (!Array.isArray(classEl)) {
+        htmlTag.classList.add(classEl)
+      } else {
+        htmlTag.classList.add(...classEl)
+      }
+    }
+    if (attr) {
+      htmlTag.setAttribute(attr.type, attr.value)
+    }
+    if (text) {
+      htmlTag.textContent = text
+    }
+    return htmlTag
+  }
+
+  function createTask(id, textEl) {
+    const item = createEl('div', 'task-item', {type: 'data-task-id', value: id}),
+      container = createEl('div', 'task-item__main-container'),
+      content = createEl('div', 'task-item__main-content'),
+      form = createEl('form', 'checkbox-form'),
+      input = createEl('input', 'checkbox-form__checkbox', {type: 'type', value: 'checkbox'}),
+      label = createEl('label', '', {type: 'for', value: `task-${id}`}),
+      span = createEl('span', 'task-item__text', '', textEl),
+      button = createEl('button', ['task-item__delete-button', 'default-button', 'delete-button'], {
+        type: 'data-delete-task-id',
+        value: id
+      }, 'Удалить')
+
+    input.setAttribute('id', `task-${id}`)
+
+    item.append(container)
+    container.append(content, button)
+    content.append(form, span)
+    form.append(input, label)
+    list.append(item)
+  }
+
+  tasks.forEach(instance => createTask(instance.id, instance.text))
+
+
+  // Задание #2 / 14. Работа с DOM. Часть 2 / Модуль 1. База JavaScript
+  const form = document.querySelector('.create-task-block')
+  const formInput = form.querySelector('.create-task-block__input')
+  const errorBlock = form.querySelector('.error-message-block')
+  form.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const value = formInput.value
+    if (!value) {
+      errorBlock.textContent = 'Название задачи не должно быть пустым'
+      formInput.focus()
+      return false
+    } else if (tasks.some(name => name.text === value)) {
+      errorBlock.textContent = 'Задача с таким названием уже существует.'
+      formInput.focus()
+      return false
+    }
+
+    const id = Date.now()
+    const instance = {
+      id: String(id),
+      completed: false,
+      text: value,
+    }
+    tasks.push(instance)
+
+    createTask(id, value)
+    console.log('Показываю массив tasks: ', tasks)
+  })
+
+
+
+  // Задание #3 / 14. Работа с DOM. Часть 2 / Модуль 1. База JavaScript
+  const modal = document.querySelector('.modal-overlay')
+  const modalCancelButton = modal.querySelector('.delete-modal__cancel-button')
+  const modalConfirmButton = modal.querySelector('.delete-modal__confirm-button')
+  const hidden = 'modal-overlay_hidden'
+  let currentTaskID = null
+
+  list.addEventListener('click', ({target}) => {
+    if (target.classList.contains('delete-button')) {
+      currentTaskID = target.dataset.deleteTaskId
+      modal.classList.remove(hidden)
+    }
+  })
+
+  modalCancelButton.addEventListener('click', () => {
+    modal.classList.add(hidden)
+    currentTaskID = null
+  })
+
+  modalConfirmButton.addEventListener('click', () => {
+    modal.classList.add(hidden)
+    deleteTask(currentTaskID)
+  })
+
+  const deleteTask = (id) => {
+    let index = tasks.findIndex(e => e.id === id)
+    tasks.splice(index, 1)
+    errorBlock.textContent = ''
+    return id && list.querySelector(`[data-task-id="${id}"]`).remove()
+  }
+
+</script>
+</body>
+</html>

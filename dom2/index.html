@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="index.css">
-  <title>Работа с DOM часть 2</title>
+  <title>Работа с DOM</title>
 </head>
 <body>
 <div id="tasks">
@@ -25,14 +25,12 @@
         Создать
       </button>
     </form>
-
     <div class="tasks-list"></div>
   </div>
 </div>
 
 <script>
-  // Задание #2 / 14. Работа с DOM. Часть 1 / Модуль 1. База JavaScript
-
+  'use strict'
   const tasks = [
     {
       id: '1138465078061',
@@ -94,6 +92,29 @@
   }
 
   tasks.forEach(instance => createTask(instance.id, instance.text))
+
+
+
+  // Задание #1 / 14. Работа с DOM. Часть 2 / Модуль 1. База JavaScript
+  const form = document.querySelector('.create-task-block')
+  const formInput = form.querySelector('.create-task-block__input')
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const value = formInput.value
+    const id = Date.now()
+    const instance = {
+      id: String(id),
+      completed: false,
+      text: value,
+    }
+    tasks.push(instance)
+
+    createTask(id, value)
+    console.log('Показываю массив tasks: ', tasks)
+  })
+
 </script>
 </body>
 </html>

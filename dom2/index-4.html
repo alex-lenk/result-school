@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css"/>
+  <title>Работа с DOM</title>
+</head>
+<body>
+<div id="tasks">
+  <div class="tasks__wrapper">
+    <form class="create-task-block">
+      <input
+        name="taskName"
+        class="create-task-block__input default-text-input"
+        type="text"
+        placeholder="Создайте новую задачу"
+        value="Посмотреть урок по JavaScript"
+      >
+      <span class="error-message-block"></span>
+      <button type="submit" class="create-task-block__button default-button">Создать</button>
+    </form>
+    <div class="tasks-list"></div>
+  </div>
+</div>
+
+<div class="modal-overlay modal-overlay_hidden">
+  <div class="delete-modal">
+    <h3 class="delete-modal__question">Вы действительно хотите удалить эту задачу?</h3>
+    <div class="delete-modal__buttons">
+      <button class="delete-modal__button delete-modal__cancel-button">Отмена</button>
+      <button class="delete-modal__button delete-modal__confirm-button">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Задание #4 / 14. Работа с DOM. Часть 2 / Модуль 1. База JavaScript
+  const bodyEl = document.body
+  const taskItem = document.querySelectorAll('.task-item')
+  const button = document.querySelectorAll('button')
+  let theme = 'light'
+  bodyEl.addEventListener('keydown', ({key}) => {
+    if (key === 'Tab') {
+      if (theme === 'light') {
+        bodyEl.style.backgroundColor = '#24292E'
+        taskItem.forEach(item => {
+          item.style.color = '#fff'
+        })
+        button.forEach(item => {
+          item.style.border = '1px solid #fff'
+        })
+        theme = 'dark'
+        return false
+      }
+
+      bodyEl.style.backgroundColor = 'initial'
+      taskItem.forEach(item => {
+        item.style.color = 'initial'
+      })
+      button.forEach(item => {
+        item.style.border = 'initial'
+      })
+      theme = 'light'
+    }
+  })
+</script>
+</body>
+</html>
