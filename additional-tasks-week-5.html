@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="week-5.css">
+</head>
+<body>
+<h2 class="container__title">Кастомный селектор</h2>
+<div id="container" class="container"></div>
+
+<script>
+  // Задание #1 / Дополнительные задания недели 5 / Модуль 1. База JavaScript
+  class CustomSelect {
+    #id
+    #options
+    #currentSelectedOption
+
+    constructor(id, options) {
+      this.#id = id
+      this.#options = options
+    }
+
+    static #createEl(tagName, classEl, text) {
+      const htmlTag = document.createElement(tagName)
+
+      if (classEl) {
+        htmlTag.className = classEl
+      }
+      if (text) {
+        htmlTag.textContent = text
+      }
+      return htmlTag
+    }
+
+    render(container) {
+      const div = CustomSelect.#createEl('div', `select-dropdown select-dropdown--${this.#id}`)
+      const button = CustomSelect.#createEl('button', `select-dropdown select-dropdown__button select-dropdown__button--${this.#id}`, 'Выберите элемент')
+      const ul = CustomSelect.#createEl('ul', `select-dropdown__list select-dropdown__list--${this.#id}`)
+      div.append(button, ul)
+
+      const toggleClass = () => ul.classList.toggle('active')
+
+      const switchClass = (active) => {
+        ul.querySelectorAll('li').forEach(li => li.classList.remove('selected'))
+        active.classList.add('selected')
+      }
+
+      const clickItem = (li, option) => {
+        toggleClass()
+        switchClass(li)
+        this.#currentSelectedOption = option
+        button.textContent = option.text
+      }
+
+      this.#options.forEach(instance => {
+        const li = CustomSelect.#createEl('li', `select-dropdown__list-item`, instance.text)
+        li.dataset.value = instance.value
+        li.onclick = clickItem.bind(null, li, instance)
+        ul.append(li)
+      })
+
+      container.append(div)
+      button.addEventListener('click', toggleClass)
+    }
+  }
+
+  const options = [
+    {value: 1, text: 'JavaScript'},
+    {value: 2, text: 'NodeJS'},
+    {value: 3, text: 'ReactJS'},
+    {value: 4, text: 'HTML'},
+    {value: 5, text: 'CSS'}
+  ]
+
+  const customSelect = new CustomSelect('123', options)
+  const mainContainer = document.querySelector('#container')
+  customSelect.render(mainContainer)
+
+</script>
+</body>
+</html>
