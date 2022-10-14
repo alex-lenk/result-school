@@ -13,6 +13,15 @@
 </ol>
 
 <script>
+  /*
+    Promise.all([
+      new Promise(),
+      new Promise(),
+      new Promise(),
+    ])
+    */
+  const TODOS_URL = 'https://jsonplaceholder.typicode.com/todos'
+  const todosIds = [43, 10, 5, 100, 101]
   const dataContainer = document.querySelector('#data-container')
 
   const createTodoElement = (text) => {
@@ -25,44 +34,27 @@
     return li
   }
 
-  const toggleLoader = () => {
-    const loaderEl = dataContainer.querySelector('#loader')
-    const isHeading = loaderEl.hasAttribute('hidden')
-    if (isHeading) {
-      loaderEl.removeAttribute('hidden')
-    } else {
-      loaderEl.setAttribute('hidden', '')
-    }
-  }
-
-
-  const getAllTodos = () => {
-    toggleLoader()
-    const TODOS_URL = 'https://jsonplaceholder.typicode.com/todos'
-    const result = fetch(TODOS_URL, {
-      method: 'GET',
+  const getTodosById = (ids) => {
+    const requests = ids.map(id => fetch(`${TODOS_URL}/${id}`))
+    Promise.all(requests)
+      .then(responses => {
+        const dataResults = responses.map(result => result.json())
+        return Promise.all(dataResults)
+      })
+    .then(todos => {
+      console.log('todos', todos)
+      todos.forEach(todo => {
+        dataContainer.append(createTodoElement(todo.title))
+      })
+      //dataContainer
     })
-
-    result
-      .then((response) => {
-        if (!response.ok) {
-          throw 'ошибка в запросе'
-        }
-        return response.json()
-      })
-      .then(todos => {
-        todos.forEach(instance => {
-          dataContainer.append(createTodoElement(instance.title))
-        })
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-    .finally(() => {
-      toggleLoader()
+    .catch(error => {
+      console.log(error)
     })
   }
-  getAllTodos()
+
+  getTodosById(todosIds)
+
 </script>
 </body>
 </html>
