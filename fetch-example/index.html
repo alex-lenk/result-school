@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise + fetch</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body style="background-color: #2b2b2b; color: #fff">
+<h1>Promise + fetch</h1>
+
+<ol id="data-container">
+  <span id="loader" hidden>Loading...</span>
+</ol>
+
+<script>
+  const dataContainer = document.querySelector('#data-container')
+
+  const createTodoElement = (text) => {
+    const li = document.createElement('li')
+    const a = document.createElement('a')
+    a.href = '#'
+    a.textContent = text
+    li.append(a)
+
+    return li
+  }
+
+  const toggleLoader = () => {
+    const loaderEl = dataContainer.querySelector('#loader')
+    const isHeading = loaderEl.hasAttribute('hidden')
+    if (isHeading) {
+      loaderEl.removeAttribute('hidden')
+    } else {
+      loaderEl.setAttribute('hidden', '')
+    }
+  }
+
+
+  const getAllTodos = () => {
+    toggleLoader()
+    const TODOS_URL = 'https://jsonplaceholder.typicode.com/todos'
+    const result = fetch(TODOS_URL, {
+      method: 'GET',
+    })
+
+    result
+      .then((response) => {
+        if (!response.ok) {
+          throw 'ошибка в запросе'
+        }
+        return response.json()
+      })
+      .then(todos => {
+        todos.forEach(instance => {
+          dataContainer.append(createTodoElement(instance.title))
+        })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+    .finally(() => {
+      toggleLoader()
+    })
+  }
+  getAllTodos()
+</script>
+</body>
+</html>

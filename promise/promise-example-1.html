@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+</head>
+<body style="background-color: #2b2b2b">
+<script>
+  const developer = {
+    name: 'Aleksandr',
+    isJSDev: true
+  }
+
+  const promise = new Promise((resolve, reject) => {
+    if (developer.isJSDev) {
+      setTimeout(() => {
+        resolve(`${developer.name} является javaScript-программистом`)
+      }, 3000)
+    } else {
+      setTimeout(() => {
+        reject(`${developer.name} НЕ javaScript-программист`)
+      }, 3000)
+    }
+  })
+  console.log(promise)
+  
+  promise
+    .then(successMessage => {
+      console.log(successMessage)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    .finally(() => {
+      console.log('finally')
+    })
+
+  // тоже самое что и вверху
+  /*
+  promise
+    .then(console.log)
+    .catch(console.log)
+    .finally(() => {
+      console.log('finally')
+    })
+    */
+</script>
+</body>
+</html>

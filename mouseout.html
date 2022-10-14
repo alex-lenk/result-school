@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+  <link rel="stylesheet" href="dom2/index.css">
+</head>
+<body>
+<div class="main-navigation">
+  <a
+    class="main-navigation__button-item"
+    href="#tasks_today"
+    data-button-id="1"
+  >
+    Задачи на Сегодня
+  </a>
+  <a
+    class="main-navigation__button-item"
+    href="#tasks_week"
+    data-button-id="2"
+  >
+    Задачи на Эту Неделю
+  </a>
+  <a
+    class="main-navigation__button-item"
+    href="#tasks_later"
+    data-button-id="3"
+  >
+    Задачи на Потом
+  </a>
+</div>
+<div id="tasks">
+  <div class="tasks__wrapper">
+    <form class="create-task-block">
+      <input
+        name="taskName"
+        class="create-task-block__input default-text-input"
+        type="text"
+        placeholder="Создайте новую задачу"
+        value="Посмотреть урок по JavaScript"
+      >
+      <button
+        type="submit"
+        class="create-task-block__button default-button"
+      >
+        Создать
+      </button>
+    </form>
+    <div class="tasks-list">
+      <div class="task-item" data-task-id="1">
+        <div class="task-item__main-container">
+          <div class="task-item__main-content">
+            <form class="checkbox-form">
+              <input class="checkbox-form__checkbox" type="checkbox" id="task-1">
+              <label for="task-1"></label>
+            </form>
+            <span class="task-item__text">Посмотреть новый урок по JavaScript</span>
+          </div>
+          <button class="task-item__delete-button default-button delete-button" data-delete-task-id="5">
+            Удалить
+          </button>
+        </div>
+      </div>
+
+      <div class="task-item" data-task-id="2">
+        <div class="task-item__main-container">
+          <div class="task-item__main-content">
+            <form class="checkbox-form">
+              <input class="checkbox-form__checkbox" type="checkbox" id="task-2">
+              <label for="task-2"></label>
+            </form>
+            <span class="task-item__text">Сделать ДЗ к уроку по JavaScript</span>
+          </div>
+          <button class="task-item__delete-button default-button delete-button" data-delete-task-id="5">
+            Удалить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function createTooltip(text) {
+    const tooltip = document.createElement('span')
+    tooltip.textContent = text
+    tooltip.classList.add('tooltip')
+    return tooltip;
+  }
+
+  //mouseover
+  document.addEventListener('mouseover', (event) => {
+    const {target} = event
+    const isOverFromDeleteButton = target.className.includes('task-item__delete-button')
+    if (isOverFromDeleteButton) {
+      const taskItemHtml = target.closest('.task-item')
+      const taskId = taskItemHtml?.dataset.taskId
+      if (taskId) {
+        const tooltipHTML = createTooltip(`Удалить задачу под номером ${taskId}`)
+        target.append(tooltipHTML)
+      }
+    }
+  })
+
+
+  //mouseout
+  document.addEventListener('mouseout', (event) => {
+    const {target} = event
+    const isOutFromDeleteButton = target.className.includes('task-item__delete-button')
+    if (isOutFromDeleteButton) {
+      const tooltip = document.querySelector('.tooltip')
+      if (tooltip) {
+        tooltip.remove()
+      }
+    }
+  })
+</script>
+</body>
+</html>
