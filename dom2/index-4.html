@@ -40,10 +40,12 @@
   const bodyEl = document.body
   const taskItem = document.querySelectorAll('.task-item')
   const button = document.querySelectorAll('button')
-  let theme = 'light'
-  bodyEl.addEventListener('keydown', ({key}) => {
+  let theme = false
+  bodyEl.addEventListener('keydown', (event) => {
+    const {key} = event
     if (key === 'Tab') {
-      if (theme === 'light') {
+      event.preventDefault()
+      if (theme) {
         bodyEl.style.backgroundColor = '#24292E'
         taskItem.forEach(item => {
           item.style.color = '#fff'
@@ -51,7 +53,7 @@
         button.forEach(item => {
           item.style.border = '1px solid #fff'
         })
-        theme = 'dark'
+        theme = false
         return false
       }
 
@@ -62,7 +64,7 @@
       button.forEach(item => {
         item.style.border = 'initial'
       })
-      theme = 'light'
+      theme = true
     }
   })
 </script>
