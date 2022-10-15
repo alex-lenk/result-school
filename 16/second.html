@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise + fetch</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<h1>Promise + fetch</h1>
+<ol id="data-container">
+  <span id="loader" hidden>Loading...</span>
+</ol>
+
+<script>
+  'use strict'
+
+  const dataContainer = document.querySelector('#data-container')
+  const URL_USERS = 'https://jsonplaceholder.typicode.com/users'
+
+  const createUserElement = (text) => {
+    const li = document.createElement('li')
+    const a = document.createElement('a')
+    a.href = '#'
+    a.textContent = text
+    li.append(a)
+    return li
+  }
+
+  const toggleLoader = () => {
+    const loaderEl = dataContainer.querySelector('#loader')
+    const isHeading = loaderEl.hasAttribute('hidden')
+    if (isHeading) {
+      loaderEl.removeAttribute('hidden')
+    } else {
+      loaderEl.setAttribute('hidden', '')
+    }
+  }
+
+
+  function getUsersByIds(ids) {
+    toggleLoader()
+    const requests = ids.map(id => fetch(`${URL_USERS}/${id}`))
+
+    Promise.all(requests)
+      .then(responses => {
+        const dataResults = responses.map(response => response.json())
+        return Promise.all(dataResults)
+      })
+      .then(responses => {
+        responses.forEach(user => {
+          return dataContainer.append(createUserElement(user.name))
+        })
+      })
+      .catch(error => {
+        console.error(error)
+      })
+      .finally(() => toggleLoader())
+  }
+
+  getUsersByIds([5, 6, 2, 1])
+</script>
+</body>
+</html>

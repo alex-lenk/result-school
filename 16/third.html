@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise + fetch</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<h1>Promise + fetch</h1>
+<ol id="data-container">
+  <span id="loader" hidden>Loading...</span>
+</ol>
+<!--
+<li class="photo-item">
+  <img class="photo-item__image" src="https://via.placeholder.com/600/92c952">
+  <h3 class="photo-item__title">
+    accusamus beatae ad facilis cum similique qui sunt
+  </h3>
+</li>
+-->
+<script>
+  'use strict'
+
+  const URL_PHOTOS = 'https://jsonplaceholder.typicode.com/photos/'
+  const dataContainer = document.querySelector('#data-container')
+
+  const getFastestLoadedPhoto = (ids) => {
+    toggleLoader()
+    const requests = ids.map(id => fetch(`${URL_PHOTOS}/${id}`))
+
+    Promise.race(requests)
+      .then((responses) => responses.json())
+      .then((photos) => createPhoto(photos))
+      .catch((error) => console.error(error))
+      .finally(() => toggleLoader())
+  }
+  getFastestLoadedPhoto([60, 12, 55])
+
+
+  function createPhoto(photo) {
+    const photosElement = createEl('li', 'photo-item')
+    const photosElementImg = createEl('img', 'photo-item__image', '', {type: 'src', value: photo.url})
+    const photosElementHeader = createEl('h3', 'photo-item__title', photo.title)
+    photosElement.append(photosElementImg, photosElementHeader)
+    dataContainer.append(photosElement)
+  }
+
+
+  function createEl(typeEl, classEl, text, attr) {
+    const htmlTag = document.createElement(typeEl)
+
+    htmlTag.classList.add(classEl)
+    if (attr) htmlTag.setAttribute(attr.type, attr.value)
+    if (text) htmlTag.textContent = text
+
+    return htmlTag
+  }
+
+
+  function toggleLoader() {
+    const loaderEl = dataContainer.querySelector('#loader')
+    const isHeading = loaderEl.hasAttribute('hidden')
+    if (isHeading) {
+      loaderEl.removeAttribute('hidden')
+    } else {
+      loaderEl.setAttribute('hidden', '')
+    }
+  }
+</script>
+</body>
+</html>
