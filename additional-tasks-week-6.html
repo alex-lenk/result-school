@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .post-comment {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .post-comment__text {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div id="app"></div>
+<div id="loader" hidden>Загрузка</div>
+
+<script>
+  // Задание #1 / Дополнительные задания недели 5 / Модуль 1. База JavaScript
+  const app = document.querySelector('#app')
+  const POST_URL = 'https://jsonplaceholder.typicode.com/posts'
+  const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments'
+
+  const renderPost = async (id) => {
+    toggleLoader()
+    try {
+      const requestPost = await fetch(`${POST_URL}/${id}`)
+      if (!requestPost.ok) console.error('ошибка в получении поста')
+      const resultPost = await requestPost.json()
+
+      const requestResponse = await fetch(`${COMMENTS_URL}?postId=${id}`)
+      if (!requestResponse.ok) console.error('Ошибка в получении списка комментариев')
+      const resultsComments = await requestResponse.json()
+
+      createPost(resultPost.title, resultPost.body)
+
+      const postComments = document.querySelector('.post__comments')
+      resultsComments.forEach(instance => {
+        postComments.append(createComment(instance.email, instance.body))
+      })
+    } catch (error) {
+      console.log(error)
+    } finally {
+      toggleLoader()
+    }
+  }
+
+  function createPost(title, body) {
+    const postEl = createEl('div', 'post', '', ['id', 'post'])
+    const h1 = createEl('h1', 'post__title', title)
+    const postText = createEl('p', 'post__text', body)
+    const postCommentsText = createEl('b', 'post__comments-text', 'Комментарии')
+    const postComments = createEl('div', 'post__comments')
+
+    postEl.append(h1, postText, postCommentsText, postComments)
+    app.append(postEl)
+  }
+
+  function createComment(email, body) {
+    const post = createEl('div', 'post-comment')
+    const author = createEl('span', 'post-comment__author', email)
+    const text = createEl('span', 'post-comment__text', body)
+    post.append(author, text)
+
+    return post
+  }
+
+  function createEl(typeEl, classEl, text, attr) {
+    const htmlTag = document.createElement(typeEl)
+    htmlTag.classList.add(classEl)
+
+    if (text) {
+      htmlTag.textContent = text
+    }
+    if (attr) {
+      htmlTag.setAttribute(attr[0], attr[1])
+    }
+
+    return htmlTag
+  }
+
+  function toggleLoader() {
+    const loaderEl = document.body.querySelector('#loader')
+    const isHeading = loaderEl.hasAttribute('hidden')
+    if (isHeading) {
+      loaderEl.removeAttribute('hidden')
+    } else {
+      loaderEl.setAttribute('hidden', '')
+    }
+  }
+
+  renderPost(1)
+</script>
+</body>
+</html>
