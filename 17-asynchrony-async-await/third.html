@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body style="background-color: #2b2b2b; color: #eee">
+<span id="loader" hidden>Loading...</span>
+<ul class="data-container"></ul>
+
+<script>
+  //задание №3 / 17. Асинхронность (async/await)
+  const dataContainer = document.querySelector('.data-container')
+  const ALBUMS_URL = 'https://jsonplaceholder.typicode.com/albums'
+
+  const toggleLoader = () => {
+    const loaderEl = document.querySelector('#loader')
+    const isHeading = loaderEl.hasAttribute('hidden')
+    if (isHeading) {
+      loaderEl.removeAttribute('hidden')
+    } else {
+      loaderEl.setAttribute('hidden', '')
+    }
+  }
+
+  const createAlbumElement = (text) => {
+    const li = document.createElement('li')
+    li.textContent = text
+    return li
+  }
+
+  async function renderAlbums() {
+    toggleLoader()
+
+    try {
+      const response = await fetch(ALBUMS_URL)
+      const result = await response.json()
+      result.forEach(album => dataContainer.append(createAlbumElement(album.title)))
+    } catch {
+      dataContainer.innerText = 'Произошла ошибка в получении данных об альбомах...'
+    } finally {
+      toggleLoader()
+    }
+  }
+
+  renderAlbums()
+</script>
+</body>
+</html>

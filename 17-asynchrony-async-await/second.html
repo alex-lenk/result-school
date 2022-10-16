@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  const TODOS_URL = 'https://jsonplaceholder.typicode.com/todos'
+  const getTodosByIds = async (ids) => {
+    try {
+      const requests = ids.map(async (id) => await fetch(`${TODOS_URL}/${id}`))
+      const responses = await Promise.all(requests)
+      const dataResults = responses.map(async (data) => await data.json())
+      const allTasks = await Promise.all(dataResults)
+      console.log(allTasks)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  getTodosByIds([43, 21, 55, 100, 10])
+</script>
+</body>
+</html>

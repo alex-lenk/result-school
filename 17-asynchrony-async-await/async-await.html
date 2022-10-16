@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+</head>
+<body style="background-color: #2b2b2b">
+<script>
+  const USER_URL = 'https://jsonplaceholder.typicode.com/users'
+  const TODOS_URL = 'https://jsonplaceholder.typicode.com/todos'
+
+  const getTodosWithUseData = async () => {
+    try {
+      const response = await fetch(USER_URL)
+      if (!response.ok) {
+        console.error('ошибка в соединении')
+      }
+      const users = await response.json()
+      const firstUserId = users[0]?.id
+      const todosResponse = await fetch(`${TODOS_URL}?userId=${firstUserId}`)
+      if (!todosResponse.ok) {
+        console.error('Ошибка в получении списка задач')
+      }
+      const todos = await todosResponse.json()
+      console.log(users)
+      console.log(todos)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      console.log('finally')
+    }
+  }
+
+  const promise = getTodosWithUseData()
+  console.log(promise)
+</script>
+</body>
+</html>
