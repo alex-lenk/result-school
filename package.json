@@ -1,0 +1,30 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "example rollup",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "rullup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-lenk/result-school.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "alexlenk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alex-lenk/result-school/issues"
+  },
+  "homepage": "https://github.com/alex-lenk/result-school#readme",
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.0",
+    "rollup-plugin-img": "^1.1.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^2.0.1",
+    "rollup-plugin-styles": "^4.0.0"
+  }
+}
