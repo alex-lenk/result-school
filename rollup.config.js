@@ -20,11 +20,11 @@ export default [
       }),
       serve({
         open: true,
-        contentBase: ['./build', './src'],
+        contentBase: './',
         port: 3506,
       }),
       livereload({
-        watch: './src',
+        watch: './',
       })
     ],
   }

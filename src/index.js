@@ -1,5 +1,5 @@
-import './index.css'
-import img from './about.jpg';
+import '../index.css'
+import img from '../assets/achievements.png';
 
 console.log('Привет мир!')
 
